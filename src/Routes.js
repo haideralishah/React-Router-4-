@@ -1,30 +1,31 @@
 import React from 'react';
-import App from './App';
-import About from './About';
 import {
     Router,
-    Route,
-    Link
+    Route
 } from 'react-router-dom';
 
-import createBrowserHistory from 'history/createBrowserHistory'
+import App from './App';
+import About from './About';
+import Contact from './Contact';
+import Navbar from './Navbar';
+// import Nothing from './Nothing';
+
+import createBrowserHistory from 'history/createBrowserHistory';
+
 const customHistory = createBrowserHistory()
 
-const BasicExample = () => (
+const MyRoutes = () => (
     <Router history={customHistory}>
         <div>
-            <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-            </ul>
-
+            <Navbar />
             <hr />
-
             <Route exact path="/" component={App} />
-            <Route path="/about/:id" component={About} />
-            {/* <Route path="/topics" component={Topics} />  */}
+            <Route path="/about" component={About} />
+            <Route path="/contact/:username" component={Contact} />
+            {/*<Route component={Nothing} />*/}
+
         </div>
     </Router>
 )
 
-export default BasicExample
+export default MyRoutes;

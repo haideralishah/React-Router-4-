@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import {
-    Link
-} from 'react-router-dom';
 
-
-class About extends Component {
+class Contact extends Component {
+  sendEmail() {
+    console.log('emailsent', this.props);
+    this.props.history.push('/')
+  }
   render() {
     return (
       <div>
-        <h1>About</h1>
-        <Link to='/contact'>Contact</Link>
+        <h1>Contact</h1>
+        <br />
+            <span>Contact</span>      {this.props.match.params.username}
+        <br />
+        <button onClick={this.sendEmail.bind(this)}>Send Email</button>
       </div>
     );
   }
 }
 
-export default About;
+export default Contact;
 
 
 

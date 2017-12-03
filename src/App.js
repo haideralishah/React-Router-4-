@@ -1,18 +1,77 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router-dom'
-
-
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editFlag: false,
+      addTodo: '',
+      todos: []
+    }
+
+    this.todoForm = this.todoForm.bind(this);
+    this.addTodo = this.addTodo.bind(this);
+    // this.deleteTodo = this.deleteTodo.bind(this);
+
+
+  }
+  todoForm(ev) {
+    this.setState({
+      addTodo: ev.target.value
+    });
+  }
+  addTodo(ev) {
+    let todosClone = this.state.todos;
+    todosClone.push(this.state.addTodo);
+    this.setState({
+      todos: todosClone,
+      addTodo: ''
+    });
+  }
+  deleteTodo(key, ev) {
+
+    let todosClone = this.state.todos;
+    todosClone.splice(key, 1);
+    this.setState({
+      todos: todosClone
+    })
+  }
+
+  editTodo(key, ev) {
+    console.log(key, ev);
+    let todosClone = this.state.todos;
+
+    this.setState({
+      addTodo: todosClone[key],
+      editFlag: true
+    })
+  }
+
   render() {
     return (
       <div>
-        <h1>Hello World</h1>
+        <input type='text' value={this.state.addTodo} onChange={this.todoForm} />
 
-        <ul>
-          <li><Link to="/about/Haider">Haider</Link></li>
-          <li><Link to="/about/Ali">Ali</Link></li>
-        </ul>
+        {
+          (this.state.editFlag)?
+          (<button onClick={this.addTodo}>Update</button>) :
+          (<button onClick={this.addTodo}>Add Todo</button>)
+        
+        }
+
+
+        {
+          this.state.todos.map((todo, abc) => {
+            return (
+              <h1 key={abc}>{todo}
+                <button onClick={this.deleteTodo.bind(this, abc)}>Delete</button>
+                <button onClick={this.editTodo.bind(this, abc)}>Edit</button>
+              </h1>
+            )
+          })
+        }
+
+
       </div>
     );
   }
