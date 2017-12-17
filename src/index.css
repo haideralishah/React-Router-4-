@@ -3,3 +3,19 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.custome-container{
+  width: 70%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.custome-btn{
+  width: 200px;
+  margin: 15px;
+}
+.btn-container{
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}

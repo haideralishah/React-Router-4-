@@ -4,11 +4,9 @@ import {
     Route
 } from 'react-router-dom';
 
-import App from './App';
-import About from './About';
-import Contact from './Contact';
-import Navbar from './Navbar';
-// import Nothing from './Nothing';
+import Navbar from './components/Navbar';
+import CreatePoll from './container/CreatePoll';
+import Polling from './container/Poll';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 
@@ -19,9 +17,10 @@ const MyRoutes = () => (
         <div>
             <Navbar />
             <hr />
-            <Route exact path="/" component={App} />
-            <Route path="/about" component={About} />
-            <Route path="/contact/:username" component={Contact} />
+            <Route exact path="/" component={CreatePoll} />
+            <Route path="/createpoll" component={CreatePoll} />
+            <Route path="/:pollname" component={Polling} />
+            {/*<Route path="/contact/:username" component={Contact} />*/}
             {/*<Route component={Nothing} />*/}
 
         </div>
